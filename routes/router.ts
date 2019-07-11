@@ -30,8 +30,6 @@ router.get('/mensajes', (req: Request, res:Response) =>{
 });
 
 router.get('/mensajes/:id', (req:Request, res:Response) => {
-   const de = req.body.de;
-   const cuerpo = req.body.cuerpo;
    const id = req.params.id;
    pool.query('SELECT * FROM public.persona WHERE id = $1', [id], (error:any, results:any) => {
       if (error) {
@@ -42,15 +40,11 @@ router.get('/mensajes/:id', (req:Request, res:Response) => {
          ok: true,
          mensaje: 'GET id ready',
          id,
-         de,
-         cuerpo,
          result : results.rows
       })
    })
 });
 router.get('/mensajes/nombre/:nombre', (req:Request, res:Response) => {
-   const de = req.body.de;
-   const cuerpo = req.body.cuerpo;
    const nombre = req.params.nombre;
    pool.query('SELECT * FROM public.persona WHERE nombre = $1', [nombre], (error:any, results:any) => {
       if (error) {
@@ -66,12 +60,9 @@ router.get('/mensajes/nombre/:nombre', (req:Request, res:Response) => {
    })
 });
 router.get('/mensajes/ap_pat/:ap_pat', (req:Request, res:Response) => {
-   const de = req.body.de;
-   const cuerpo = req.body.cuerpo;
    const ap_pat = req.params.ap_pat;
    pool.query('SELECT * FROM public.persona WHERE ap_pat = $1', [ap_pat], (error:any, results:any) => {
       if (error) {
-         console.log('Error en la consulta')
          throw error
       }
       res.status(200).json({
@@ -83,18 +74,31 @@ router.get('/mensajes/ap_pat/:ap_pat', (req:Request, res:Response) => {
    })
 });
 router.get('/mensajes/ap_mat/:ap_mat', (req:Request, res:Response) => {
-   const de = req.body.de;
-   const cuerpo = req.body.cuerpo;
    const ap_mat = req.params.ap_mat;
    pool.query('SELECT * FROM public.persona WHERE ap_mat = $1', [ap_mat], (error:any, results:any) => {
       if (error) {
-         console.log('Error en la consulta')
          throw error
       }
       res.status(200).json({
          ok: true,
          mensaje: 'GET id ready',
          ap_mat,
+         result : results.rows
+      })
+   })
+});
+router.get('/mensajes/todos/:nombre,:ap_pat,:ap_mat', (req:Request, res:Response) => {
+   const nombre = req.params.nombre;
+   const ap_pat = req.params.ap_pat;
+   const ap_mat = req.params.ap_mat;
+   pool.query(`SELECT * FROM public.persona WHERE nombre = '${nombre}' and ap_pat = '${ap_pat}' and ap_mat = '${ap_mat}'`,(error:any, results:any) => {
+      if (error) {
+         console.log('Error en la consulta')
+         throw error
+      }
+      res.status(200).json({
+         ok: true,
+         mensaje: 'GET ready',
          result : results.rows
       })
    })
