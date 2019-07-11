@@ -1,0 +1,66 @@
+1.- crear proyecto
+New minor version of npm available! 6.4.1 -> 6.10.0       │
+   │   Changelog: https://github.com/npm/cli/releases/tag/v6.10.0   │
+   │               Run npm install -g npm to update!    
+2.- npm install socket.io --save
+3.- npm install cors --save
+4.- npm install body-parse --save
+5.- npm install express --save
+
+6.- npm install @types/express --save //con todo los demas
+
+*npm install -g typescript
+tsc --init
+
+tsc -w//verifica si tiene errores
+npm install -g nodemon*
+<<carpeta de clases>>
+1.- classes
+	server.ts
+2.- global
+	environment.ts	
+
+3.- routes
+4.- sockets
+
+archivo clases-> server
+import express from 'express';
+import { SERVER_PORT } from '../global/environment';
+import socketIO from 'socket.io'
+import * as socket from '../sockets/socket';
+import http from 'http';
+
+export default class Server {
+
+}	
+
+archivo global-> environment
+export const SERVER_PORT:number = 3000;
+
+archivo sockets->socket.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+machine 2 machine:comunicaicon entre 2 maquinas con procesos logicos para que la maquina funcione por si misma, no necesita la intervencio humana para la toma de decisiones
+protocolo tcp/ip comunicaion asincrona
+ancho de banda minimo y minimo de hardware(ram,flash,velocidad procesador)
+target:"es6"
+outdir:
+types:[
+	"node"
+]
+
+investigar conexion base de datos typescript con  node js
